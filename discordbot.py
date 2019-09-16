@@ -20,23 +20,7 @@ async def ping(ctx):
 async def うんち(ctx):
     await ctx.send(':poop:')
 
-    
-    
- @role.command(
-        name="set",
-        pass_context=True
-    )
-    async def set_role(self, ctx: commands.Context, *roles: discord.Role):
-        """
-      
-        /role set 
-        """
-        if not roles:
-            raise commands.BadArgument()
-
-        user = ctx.message.author
-        await self.bot.add_roles(user, *roles)
-        await self.bot.say("役職を追加しました。")
+ 
 
 
 

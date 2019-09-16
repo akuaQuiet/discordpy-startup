@@ -15,5 +15,9 @@ async def on_command_error(ctx, error):
 async def ping(ctx):
     await ctx.send('pong')
 
+    
+@bot.command()
+async def うんち(ctx):
+    await ctx.send(':poop:')
 
 bot.run(token)

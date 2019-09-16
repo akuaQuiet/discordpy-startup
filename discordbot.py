@@ -39,7 +39,7 @@ async def role(ctx: commands.Context):
 async def set_role(ctx: commands.Context, *roles: discord.Role):
     """
    
-    /role set god
+    /role set テスト
     """
     if not roles:
         await bot.say("不正な入力です。")

@@ -19,5 +19,54 @@ async def ping(ctx):
 @bot.command()
 async def うんち(ctx):
     await ctx.send(':poop:')
+    
+@bot.group(
+    pass_context=True
+)
+async def role(ctx: commands.Context):
+    """
+   
+    /role set テスト
+    """
+    if ctx.invoked_subcommand is None:
+        await bot.say("サブコマンドset, unsetのどちらかを呼んでください。")
+
+
+@role.command(
+    name="set",
+    pass_context=True
+)
+async def set_role(ctx: commands.Context, *roles: discord.Role):
+    """
+   
+    /role set god
+    """
+    if not roles:
+        await bot.say("不正な入力です。")
+        return
+
+    user = ctx.message.author
+    await bot.add_roles(user, *roles)
+    await bot.say("役職を追加しました。")
+
+
+@role.command(
+    name="unset",
+    pass_context=True
+)
+async def unset_role(ctx: commands.Context, *roles: discord.Role):
+    """
+    
+    /role unset テスト
+    """
+    if not roles:
+        await bot.say("不正な入力です。")
+        return
+
+    user = ctx.message.author
+    await bot.remove_roles(user, *roles)
+    await bot.say("役職を解除しました。")
+    
+    
 
 bot.run(token)

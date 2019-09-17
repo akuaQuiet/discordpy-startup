@@ -20,11 +20,7 @@ async def ping(ctx):
 async def うんち(ctx):
     await ctx.send(':poop:')
 
-@client.event
-async def on_message(message):
-    if message.content.startswith('/join'):
-        role = discord.utils.get(message.guild.roles, name='Test')
-        await message.author.add_roles(role)
+
         
 
 bot.run(token)

@@ -1,27 +1,40 @@
-from discord.ext import commands
-import os
-import traceback
+import discord
 
-bot = commands.Bot(command_prefix='/')
-token = os.environ['DISCORD_BOT_TOKEN']
+# 自分のBotのアクセストークンに置き換えてください
+TOKEN = 'DISCORF_BOT_TOKEN'
 
+# 接続に必要なオブジェクトを生成
+client = discord.Client()
 
-@bot.event
-async def on_command_error(ctx, error):
-    await ctx.send(str(error))
-
-
-@bot.command()
-async def ping(ctx):
-    await ctx.send('pong')
-
-    
-@bot.command()
-async def うんち(ctx):
-    await ctx.send(':poop:')
+# 起動時に動作する処理
+@client.event
+async def on_ready():
+    # 起動したらターミナルにログイン通知が表示される
+    print('ログインしました')
 
 
-        
 
-bot.run(token)
+
+# メッセージ受信時に動作する処理
+@client.event
+async def on_message(message):
+    # メッセージ送信者がBotだった場合は無視する
+    if message.author.bot:
+        return
+    # 「/neko」と発言したら「にゃーん」が返る処理
+    if message.content == '/neko':
+        await message.channel.send('くーちゃんきゃわわ')
+
+
+@client.event
+async def on_message(message):
+    if message.content.startswith('/50020'):
+        role = discord.utils.get(message.guild.roles, name='全問正解者')
+        await message.author.add_roles(role)
+        reply = f'{message.author.mention} 全問正解です！役職を付与します。'
+        await message.channel.send(reply)
+
+
+# Botの起動とDiscordサーバーへの接続
+client.run(TOKEN)
 

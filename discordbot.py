@@ -20,6 +20,7 @@ async def ping(ctx):
 async def うんち(ctx):
     await ctx.send(':poop:')
 
+@client.event
 
         
 

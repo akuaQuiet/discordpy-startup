@@ -11,7 +11,11 @@ async def on_command_error(ctx, error):
     await ctx.send(str(error))
 
 
-
+@client.event
+async def on_message(message):
+    if client.user in message.mentions: # 話しかけられたかの判定
+        reply = f'{message.author.mention} 呼んだ？' # 返信メッセージの作成
+        await message.channel.send(reply)
 
     
     
